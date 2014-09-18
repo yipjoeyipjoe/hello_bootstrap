@@ -32,11 +32,16 @@
         function init() {
             // code here.
             var stage = new createjs.Stage(demoCanvas);
+            <!--
             var circle = new createjs.Shape();
             circle.graphics.beginFill("red").drawCircle(0, 0, 50);
             circle.x = 100;
             circle.y = 100;
             stage.addChild(circle);
+            -->
+            var bg = new createjs.Bitmap("../img/background1.jpg");
+            stage.addChild(bg);
+
             stage.update();
         }
     </script>
