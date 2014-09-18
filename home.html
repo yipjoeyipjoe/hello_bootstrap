@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bootstrap</title>
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  </head>
+
+  <body onload="init();">
+  <!-- <body onload="init();" onresize="resize_can.,,vas();"> -->
+
+    <canvas id="demoCanvas" >
+
+        alternate content
+    </canvas>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+    <!-- Loading CreateJS -->
+    <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+    <p>hello</p>
+    <script>
+        var stage ;
+        var bg;
+        function init() {
+            // code here.
+            canvas = document.getElementById("demoCanvas");
+            canvas.height  = window.innerHeight;
+            canvas.width = window.innerWidth;
+            stage = new createjs.Stage(demoCanvas);
+            bg = new createjs.Bitmap("./img/background1.jpg");
+            var imgPeppaPig = new createjs.Bitmap("./img/peppa_pig1.jpg");
+
+            stage.addChild(bg);
+            stage.addChild(imgPeppaPig);
+            //stage.update();
+            createjs.Ticker.addEventListener("tick", handleTick);
+
+        }
+
+
+        function handleTick(event) {
+            var aspect = bg.image.width/bg.image.height;
+            console.log("aspect: "+aspect);
+
+            canvas.height  = window.innerHeight;
+            canvas.width = window.innerWidth;
+            bg.width = canvas.width;
+            bg.height = 300;
+
+            for (var i =1 ; i < stage.children.length; i++){
+
+            //console.log ("children image width: " + stage.children[i].image.width);
+
+                //var scaleX = canvas.width/bg.image.width;
+                //var scaleY = scaleX * aspect;//canvas.height/bg.image.height;
+                //bg.scaleX = scaleX;
+                //bg.scaleY = scaleY;
+                //stage.children[i].scaleX=scaleX;
+                //stage.children[i].scaleY = scaleY;
+            }
+           <!--
+            var scaleX = canvas.width/bg.image.width;
+            var scaleY = canvas.height/bg.image.height;
+            bg.scaleX=scaleX;
+            bg.scaleY = scaleY;
+            -->
+
+            stage.update();
+
+        }
+
+    </script>
+  </body>
+</html>
