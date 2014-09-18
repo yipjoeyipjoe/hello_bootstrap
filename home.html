@@ -34,10 +34,10 @@
         var bg;
         function init() {
             // code here.
-            //canvas = document.getElementById("demoCanvas");
+            canvas = document.getElementById("demoCanvas");
             stage = new createjs.Stage(demoCanvas);
-            //stage.canvas.height  = window.innerHeight;
-            //stage.canvas.width = window.innerWidth;
+            canvas.height  = window.innerHeight;
+            canvas.width = window.innerWidth;
             bg = new createjs.Bitmap("./img/background1.jpg");
             var imgPeppaPig = new createjs.Bitmap("./img/peppa_pig1.jpg");
             stage.addChild(bg);
@@ -49,7 +49,7 @@
 
 
         function handleTick(event) {
-<!--
+            <!--
             var aspect = bg.image.width/bg.image.height;
             console.log("aspect: "+aspect);
 
@@ -61,31 +61,26 @@
                 stage.canvas.height = window.innerHeight;
                 stage.canvas.width = window.innerHeight * aspect;
             }
--->
+            -->
+            <!--
+            canvas.height = window.innerWidth * aspect;
+            bg.width = canvas.width;
+            bg.height = 300;
+            -->
 
-            //canvas.height = window.innerWidth * aspect;
-            //bg.width = canvas.width;
-            //bg.height = 300;
+            <!--
+            for (var i =1 ; i < stage.children.length; i++){
 
-            //for (var i =1 ; i < stage.children.length; i++){
+            console.log ("children image width: " + stage.children[i].image.width);
+            }
 
-            //console.log ("children image width: " + stage.children[i].image.width);
-
-                //var scaleX = canvas.width/bg.image.width;
-                //var scaleY = scaleX * aspect;//canvas.height/bg.image.height;
-                //bg.scaleX = scaleX;
-                //bg.scaleY = scaleY;
-                //stage.children[i].scaleX=scaleX;
-                //stage.children[i].scaleY = scaleY;
-           // }
-           <!--
             var scaleX = canvas.width/bg.image.width;
             var scaleY = canvas.height/bg.image.height;
             bg.scaleX=scaleX;
             bg.scaleY = scaleY;
-            -->
 
-            stage.update();
+            -->
+            //stage.update();
 
         }
 
