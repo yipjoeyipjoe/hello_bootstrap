@@ -29,22 +29,16 @@
         var bg;
         var container;
         function init() {
-            // code here.
+
             canvas = document.getElementById("demoCanvas");
             stage = new createjs.Stage(demoCanvas);
-            canvas.height  = window.innerHeight;
-            canvas.width = window.innerWidth;
-            //container = new createjs.Container();
+            stage.canvas.height  = window.innerHeight;
+            stage.canvas.width = window.innerWidth;
             bg = new createjs.Bitmap("./img/background1.jpg");
-            //var imgPeppaPig = new createjs.Bitmap("./img/peppa_pig1.jpg");
-            <!--
-            container.addChild(bg);
-            stage.addChild(container);-->
-            //var scaleX = stage.canvas.width/bg.image.width;
-            //var scaleY = stage.canvas.height/bg.image.height;
-            //bg.scaleX = scaleX;
-            //bg.scaleY = scaleY;
-            //stage.addChild(imgPeppaPig);
+            var scaleX = stage.canvas.width / bg.image.width;
+            var scaleY = stage.canvas.height / bg.image.height;
+            bg.scaleX = scaleX;
+            bg.scaleY = scaleY;
             stage.addChild(bg);
             stage.update();
             createjs.Ticker.addEventListener("tick", handleTick);
@@ -54,6 +48,14 @@
         }
 
         function handleTick(event){
+
+            stage.canvas.height  = window.innerHeight;
+            stage.canvas.width = window.innerWidth;
+            var scaleX = stage.canvas.width / bg.image.width;
+            var scaleY = stage.canvas.height / bg.image.height;
+            bg.scaleX = scaleX;
+            bg.scaleY = scaleY;
+            console.log("update");
             stage.update();
         }
     </script>
