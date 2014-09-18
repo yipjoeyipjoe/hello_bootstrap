@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Bootstrap</title>
 
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-      <!-- Optional theme -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  </head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
 
-  <body onload="init();">
-  <!-- <body onload="init();" onresize="resize_can.,,vas();"> -->
+<body onload="init();">
+<!-- <body onload="init();" onresize="resize_canvas();"> -->
 
-    <canvas id="demoCanvas">
+<canvas id="demoCanvas">
 
-        alternate content
-    </canvas>
-
-
-    <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
-    <p>hello</p>
-    <script>
-        var stage ;
-        var bg;
-        var container;
-        function init() {
-
-            canvas = document.getElementById("demoCanvas");
-            container = new createjs.Container();
-            stage = new createjs.Stage(demoCanvas);
-            stage.canvas.height  = window.innerHeight;
-            stage.canvas.width = window.innerWidth;
-            bg = new createjs.Bitmap("./img/background1.jpg");
+    alternate content
+</canvas>
 
 
-            container (bg);
-            stage.addChild(container);
-            stage.update();
-            createjs.Ticker.addEventListener("tick", handleTick);
+<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+<p>hello</p>
+<script>
+    var stage ;
+    var bg;
+    //var container;
+    function init() {
+
+        canvas = document.getElementById("demoCanvas");
+        container = new createjs.Container();
+        stage = new createjs.Stage(demoCanvas);
+        bg = new createjs.Bitmap("./img/background1.jpg");
+        container.addChild (bg);
+        stage.addChild(container);
+        stage.update();
+        createjs.Ticker.addEventListener("tick", handleTick);
 
 
 
-        }
+    }
 
-        function handleTick(event){
-            stage.canvas.height  = window.innerHeight;
-            stage.canvas.width = window.innerWidth;
-            var scaleX = (stage.canvas.width / bg.image.width);
-            var scaleY = (stage.canvas.height / bg.image.height);
-            bg.scaleX = scaleX;
-            bg.scaleY = scaleY;
+    function handleTick(event){
+        stage.canvas.height  = window.innerHeight;
+        stage.canvas.width = window.innerWidth;
+        var scale = (stage.canvas.width / bg.image.width);
+        //var scale = (stage.canvas.height / bg.image.height);
+        bg.scaleX = scale;
+        bg.scaleY = scale;
 
-            console.log("update");
-            stage.update();
-        }
-    </script>
-  </body>
+        console.log("update");
+        stage.update();
+    }
+</script>
+</body>
 </html>
