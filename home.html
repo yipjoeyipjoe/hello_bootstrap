@@ -11,38 +11,75 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
       <!-- Optional theme -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <script type="text/javascript">
+          function resize_canvas(){
+              canvas = document.getElementById("demoCanvas");
+
+              canvas.height  = window.innerHeight;
+              canvas.width = window.innerWidth;
+              <!--
+              if (canvas.width  < window.innerWidth)
+              {
+                  canvas.width  = window.innerWidth *0.5;
+                  canvas.height = canvas.width * (3/4);
+              }
+
+              if (canvas.height < window.innerHeight)
+              {
+                  canvas.height = window.innerHeight;
+              }
+              -->
+          }
+      </script>
   </head>
 
 
-  <body onload="init();">
+  <body onload="init();" onresize="resize_canvas()">
 
-    <canvas id="demoCanvas" width="500" height="300">
+    <canvas id="demoCanvas" >
+
         alternate content
     </canvas>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
     <!-- Loading CreateJS -->
     <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
-
+    <p>hello</p>
     <script>
+        var stage ;
+        var bg;
         function init() {
             // code here.
-            var stage = new createjs.Stage(demoCanvas);
-            <!--
-            var circle = new createjs.Shape();
-            circle.graphics.beginFill("red").drawCircle(0, 0, 50);
-            circle.x = 100;
-            circle.y = 100;
-            stage.addChild(circle);
-            -->
-            var bg = new createjs.Bitmap("../img/background1.jpg");
-            stage.addChild(bg);
+            canvas = document.getElementById("demoCanvas");
+            canvas.height  = window.innerHeight;
+            canvas.width = window.innerWidth;
+            stage = new createjs.Stage(demoCanvas);
+            bg = new createjs.Bitmap("./img/background1.jpg");
+            var imgPeppaPig = new createjs.Bitmap("./img/peppa_pig1.jpg");
 
-            stage.update();
+
+
+
+            stage.addChild(bg);
+            //stage.addChild(imgPeppaPig);
+            //stage.update();
+            createjs.Ticker.addEventListener("tick", handleTick);
+        }
+
+
+        function handleTick(event) {
+            //console.log("stage update");
+            //console.log("bg.width=" + bg.image.width);
+            var scale = canvas.width/bg.image.width;
+            bg.scaleX=scale;
+            bg.scaleY = scale;
+            stage.update()
+
+
         }
     </script>
   </body>
