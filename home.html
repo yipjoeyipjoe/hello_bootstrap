@@ -11,29 +11,10 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
       <!-- Optional theme -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-      <script type="text/javascript">
-          function resize_canvas(){
-              canvas = document.getElementById("demoCanvas");
-              canvas.height  = window.innerHeight;
-              canvas.width = window.innerWidth;
-              <!--
-              if (canvas.width  < window.innerWidth)
-              {
-                  canvas.width  = window.innerWidth *0.5;
-                  canvas.height = canvas.width * (3/4);
-              }
-
-              if (canvas.height < window.innerHeight)
-              {
-                  canvas.height = window.innerHeight;
-              }
-              -->
-          }
-      </script>
   </head>
 
-
-  <body onload="init();" onresize="resize_canvas()">
+  <body onload="init();">
+  <!-- <body onload="init();" onresize="resize_canvas();"> -->
 
     <canvas id="demoCanvas" >
 
@@ -60,27 +41,36 @@
             bg = new createjs.Bitmap("./img/background1.jpg");
             var imgPeppaPig = new createjs.Bitmap("./img/peppa_pig1.jpg");
 
-
-
-
             stage.addChild(bg);
-            //stage.addChild(imgPeppaPig);
+            stage.addChild(imgPeppaPig);
             //stage.update();
             createjs.Ticker.addEventListener("tick", handleTick);
         }
 
 
         function handleTick(event) {
-            //console.log("stage update");
-            //console.log("bg.width=" + bg.image.width);
+
+            console.log("childen: "+ stage.children.length);
+
+            for (var i =0 ; i < stage.children.length; i++){
+
+            console.log ("children image width: " + stage.children[i].image.width);
+                var scaleX = canvas.width/stage.children[i].image.width;
+                var scaleY = canvas.height/stage.children[i].image.height;
+                stage.children[i].scaleX=scaleX * .3;
+                stage.children[i].scaleY = scaleY * .3;
+            }
+           <!--
             var scaleX = canvas.width/bg.image.width;
             var scaleY = canvas.height/bg.image.height;
             bg.scaleX=scaleX;
             bg.scaleY = scaleY;
-            stage.update()
+            -->
 
+            stage.update();
 
         }
+
     </script>
   </body>
 </html>
