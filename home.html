@@ -31,15 +31,15 @@
         function init() {
 
             canvas = document.getElementById("demoCanvas");
+            container = new createjs.Container();
             stage = new createjs.Stage(demoCanvas);
             stage.canvas.height  = window.innerHeight;
             stage.canvas.width = window.innerWidth;
             bg = new createjs.Bitmap("./img/background1.jpg");
-            var scaleX = stage.canvas.width / bg.image.width;
-            var scaleY = stage.canvas.height / bg.image.height;
-            bg.scaleX = scaleX;
-            bg.scaleY = scaleY;
-            stage.addChild(bg);
+
+
+            container (bg);
+            stage.addChild(container);
             stage.update();
             createjs.Ticker.addEventListener("tick", handleTick);
 
@@ -48,13 +48,13 @@
         }
 
         function handleTick(event){
-
             stage.canvas.height  = window.innerHeight;
             stage.canvas.width = window.innerWidth;
-            var scaleX = stage.canvas.width / bg.image.width;
-            var scaleY = stage.canvas.height / bg.image.height;
+            var scaleX = (stage.canvas.width / bg.image.width);
+            var scaleY = (stage.canvas.height / bg.image.height);
             bg.scaleX = scaleX;
             bg.scaleY = scaleY;
+
             console.log("update");
             stage.update();
         }
