@@ -16,17 +16,12 @@
   <body onload="init();">
   <!-- <body onload="init();" onresize="resize_can.,,vas();"> -->
 
-    <canvas id="demoCanvas" >
+    <canvas id="demoCanvas">
 
         alternate content
     </canvas>
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-    <!-- Loading CreateJS -->
     <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
     <p>hello</p>
     <script>
@@ -36,8 +31,8 @@
             // code here.
             canvas = document.getElementById("demoCanvas");
             stage = new createjs.Stage(demoCanvas);
-            canvas.height  = window.innerHeight;
-            canvas.width = window.innerWidth;
+            stage.canvas.height  = window.innerHeight;
+            stage.canvas.width = window.innerWidth;
             bg = new createjs.Bitmap("./img/background1.jpg");
             var imgPeppaPig = new createjs.Bitmap("./img/peppa_pig1.jpg");
             stage.addChild(bg);
@@ -47,43 +42,9 @@
 
         }
 
-
-        function handleTick(event) {
-            <!--
-            var aspect = bg.image.width/bg.image.height;
-            console.log("aspect: "+aspect);
-
-            if (window.innerHeight > window.innerWidth * (1/aspect)){
-            stage.canvas.width = window.innerWidth;
-            stage.canvas.height  = window.innerWidth * (1/aspect);
-            }
-            else {
-                stage.canvas.height = window.innerHeight;
-                stage.canvas.width = window.innerHeight * aspect;
-            }
-            -->
-            <!--
-            canvas.height = window.innerWidth * aspect;
-            bg.width = canvas.width;
-            bg.height = 300;
-            -->
-
-            <!--
-            for (var i =1 ; i < stage.children.length; i++){
-
-            console.log ("children image width: " + stage.children[i].image.width);
-            }
-
-            var scaleX = canvas.width/bg.image.width;
-            var scaleY = canvas.height/bg.image.height;
-            bg.scaleX=scaleX;
-            bg.scaleY = scaleY;
-
-            -->
-            //stage.update();
-
+        function handleTick(event){
+            stage.update();
         }
-
     </script>
   </body>
 </html>
