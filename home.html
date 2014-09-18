@@ -16,54 +16,65 @@
         canvas {
             border: 1px solid #333;
         }
+
     </style>
 </head>
 
 <body onload="init();">
 <!-- <body onload="init();" onresize="resize_canvas();"> -->
-
-<canvas id="demoCanvas">
-
-    alternate content
-</canvas>
-
+    <div id=”gameArea”>
+        <canvas id="demoCanvas">
+        alternate content
+        </canvas>
+    </div>
+</body>
 
 <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
 
+
 <script>
     var stage ;
-    var bg;
-    //var container;
+    var bg, peppa;
+    var container;
+
+
     function init() {
 
         canvas = document.getElementById("demoCanvas");
         container = new createjs.Container();
         stage = new createjs.Stage(demoCanvas);
-        bg = new createjs.Bitmap("./img/background1.jpg");
 
-        var peppa = new createjs.Bitmap("./img/peppa_pig1.jpg");
+        bg= new createjs.Bitmap("./img/background1.jpg");
+        peppa = new createjs.Bitmap("./img/peppa_pig1.jpg");
+        handleComplete();
+    }
+
+    function handleComplete() {
+        //document.getElementById("loader").className = "";
+
         container.addChild (bg);
         container.addChild(peppa);
         stage.addChild(container);
         stage.update();
         createjs.Ticker.addEventListener("tick", handleTick);
 
-
-
     }
 
     function handleTick(event){
         resize();
+        peppa.y = bg.image.height * .2 ;
         stage.update();
     }
 
+
    function resize(){
+       <!--
        stage.canvas.height = window.innerHeight;
        stage.canvas.width = window.innerWidth;
        var scale;
-       var bgAspect = bg.image.width/bg.image.height;  //background aspect
-       var canvasAspect =  stage.canvas.width/stage.canvas.height; //canvas aspect
-       if (canvasAspect <= bgAspect){ // check the apect centric
+       var bgAspect = bg.image.width/bg.image.height;
+       var canvasAspect =  stage.canvas.width/stage.canvas.height;
+       if (canvasAspect <= bgAspect){
            scale = (stage.canvas.width / bg.image.width)
            container.scaleX = scale;
            container.scaleY = scale;
@@ -73,8 +84,13 @@
        container.scaleX = scale;
        container.scaleY = scale;
        }
-
+            -->
    }
 </script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
