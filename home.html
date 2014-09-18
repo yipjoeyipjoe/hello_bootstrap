@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <style>
+        canvas {
+            border: 1px solid #333;
+        }
+    </style>
 </head>
 
 <body onload="init();">
@@ -23,7 +29,7 @@
 
 
 <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
-<p>hello</p>
+
 <script>
     var stage ;
     var bg;
@@ -34,7 +40,10 @@
         container = new createjs.Container();
         stage = new createjs.Stage(demoCanvas);
         bg = new createjs.Bitmap("./img/background1.jpg");
+
+        var peppa = new createjs.Bitmap("./img/peppa_pig1.jpg");
         container.addChild (bg);
+        container.addChild(peppa);
         stage.addChild(container);
         stage.update();
         createjs.Ticker.addEventListener("tick", handleTick);
@@ -44,16 +53,28 @@
     }
 
     function handleTick(event){
-        stage.canvas.height  = window.innerHeight;
-        stage.canvas.width = window.innerWidth;
-        var scale = (stage.canvas.width / bg.image.width);
-        //var scale = (stage.canvas.height / bg.image.height);
-        bg.scaleX = scale;
-        bg.scaleY = scale;
-
-        console.log("update");
+        resize();
         stage.update();
     }
+
+   function resize(){
+       stage.canvas.height = window.innerHeight;
+       stage.canvas.width = window.innerWidth;
+       var scale;
+       var bgAspect = bg.image.width/bg.image.height;  //background aspect
+       var canvasAspect =  stage.canvas.width/stage.canvas.height; //canvas aspect
+       if (canvasAspect <= bgAspect){ // check the apect centric
+           scale = (stage.canvas.width / bg.image.width)
+           container.scaleX = scale;
+           container.scaleY = scale;
+
+       }else{
+           scale = (stage.canvas.height / bg.image.height);
+       container.scaleX = scale;
+       container.scaleY = scale;
+       }
+
+   }
 </script>
 </body>
 </html>
