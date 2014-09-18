@@ -73,9 +73,10 @@
         function handleTick(event) {
             //console.log("stage update");
             //console.log("bg.width=" + bg.image.width);
-            var scale = canvas.width/bg.image.width;
-            bg.scaleX=scale;
-            bg.scaleY = scale;
+            var scaleX = canvas.width/bg.image.width;
+            var scaleY = canvas.height/bg.image.height;
+            bg.scaleX=scaleX;
+            bg.scaleY = scaleY;
             stage.update()
 
 
