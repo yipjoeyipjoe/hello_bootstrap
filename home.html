@@ -36,6 +36,7 @@
     var stage ;
     var bg, peppa;
     var container;
+    var PeppaPig;
 
 
     function init() {
@@ -43,17 +44,34 @@
         canvas = document.getElementById("demoCanvas");
         container = new createjs.Container();
         stage = new createjs.Stage(demoCanvas);
-
         bg= new createjs.Bitmap("./img/background1.jpg");
-        peppa = new createjs.Bitmap("./img/peppa_pig1.jpg");
+        //peppa = new createjs.Bitmap("./img/peppa_pig1.jpg");
+
+
+        handleImageLoaded();
+
+
         handleComplete();
+    }
+
+    function handleImageLoaded(){
+        var imgdata = new createjs.SpriteSheet ({
+        "images" : ["./img/peppapig.png"],
+        "frames": {"width" :362, "height": 498},
+        "animations" : {"walk":[0,4]}
+        });
+
+        PeppaPig = new createjs.Sprite(imgdata, "walk")
+        PeppaPig.play();
+
     }
 
     function handleComplete() {
         //document.getElementById("loader").className = "";
 
         container.addChild (bg);
-        container.addChild(peppa);
+        container.addChild(PeppaPig);
+        //container.addChild(peppa);
         stage.addChild(container);
         stage.update();
         createjs.Ticker.addEventListener("tick", handleTick);
@@ -61,14 +79,18 @@
     }
 
     function handleTick(event){
-        resize();
-        peppa.y = bg.image.height * .2 ;
+        resizeCanvas();
+        PeppaPig.y = bg.image.height * .55 ;
+        if (PeppaPig.x > bg.image.width ){
+            PeppaPig.x = 0;
+        }
+        PeppaPig.x += 20;
         stage.update();
     }
 
 
-   function resize(){
-       <!--
+   function resizeCanvas(){
+
        stage.canvas.height = window.innerHeight;
        stage.canvas.width = window.innerWidth;
        var scale;
@@ -84,7 +106,7 @@
        container.scaleX = scale;
        container.scaleY = scale;
        }
-            -->
+
    }
 </script>
 
